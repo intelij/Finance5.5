@@ -87,7 +87,7 @@ Route::post('/upload', function (Request $request) {
 //    ];
 
     $data = [];
-    foreach ($json_array as $fca) {
+    foreach ($json_array as $key => $fca) {
         /*
         1	FirmReferenceNumber
         2	TransactionRef
@@ -108,31 +108,62 @@ Route::post('/upload', function (Request $request) {
         17	ResidentialStatusOfBorrower
         18	Employment_status_of_borrower
          */
+
+         // dd($json_array, $fca);
+
         $array_data = array(
             'CoreItems' => array(
-                'FirmReferenceNumber' => $fca[0],
-                'TransRef' => $fca[1],
+                'FirmReferenceNumber' => $fca['FirmReferenceNumber'],
+                'TransRef' => $fca['TransactionRef'],
                 'Cancellation' => false
             ),
             'ShortTermLoans' => array(
-                'TransactionDate' => date('Y-m-d', strtotime($fca[2])),
-                'LoanAmount' => intval($fca[3]),
-                'LoanType' => $fca[4],
-                'APR' => number_format($fca[5], 2),
-                'ArrangementFee' => intval($fca[6]),
-                'TotalAmountPayable' => intval($fca[7]),
-                'Rollover' => $fca[8],
-                'OrderOfRollover' => $fca[9],
-                'LengthOfTerm' => $fca[10],
-                'ReasonForLoan' => $fca[11],
-                'DOBOfBorrower' => date('Y-m-d', strtotime($fca[12])),
-                'PostCode' => $fca[13],
-                'MonthlyIncomeOfBorrower' => intval($fca[14]),
-                'MaritalStatusOfBorrower' => $fca[15],
-                'ResidentialStatusOfBorrower' => $fca[16],
-                'EmploymentStatusOfBorrower' => $fca[17]
+                'TransactionDate' => date('Y-m-d', strtotime($fca['TransactionDate'])),
+                'LoanAmount' => intval($fca['LoanAmount']),
+                'LoanType' => $fca['LoanType'],
+                'APR' => number_format($fca['APR'], 2),
+                'ArrangementFee' => intval($fca['ArrangementFee']),
+                'TotalAmountPayable' => intval($fca['TotalAmountPayable']),
+                'Rollover' => $fca['Rollover'],
+                'OrderOfRollover' => $fca['OrderOfRollover'],
+                'LengthOfTerm' => $fca['LengthOfTerm'],
+                'ReasonForLoan' => $fca['ReasonForLoan'],
+                'DOBOfBorrower' => date('Y-m-d', strtotime($fca['DOBOfBorrower'])),
+                'PostCode' => $fca['PostCode'],
+                'MonthlyIncomeOfBorrower' => intval($fca['MonthlyIncomeOfBorrower']),
+                'MaritalStatusOfBorrower' => $fca['MaritalStatusOfBorrower'],
+                'ResidentialStatusOfBorrower' => $fca['ResidentialStatusOfBorrower'],
+                'EmploymentStatusOfBorrower' => $fca['Employment_status_of_borrower']
             ),
         );
+/*
+$array_data = array(
+        'CoreItems' => array(
+            'FirmReferenceNumber' => $fca[0],
+            'TransRef' => $fca[1],
+            'Cancellation' => false
+        ),
+        'ShortTermLoans' => array(
+            'TransactionDate' => date('Y-m-d', strtotime($fca[2])),
+            'LoanAmount' => intval($fca[3]),
+            'LoanType' => $fca[4],
+            'APR' => number_format($fca[5], 2),
+            'ArrangementFee' => intval($fca[6]),
+            'TotalAmountPayable' => intval($fca[7]),
+            'Rollover' => $fca[8],
+            'OrderOfRollover' => $fca[9],
+            'LengthOfTerm' => $fca[10],
+            'ReasonForLoan' => $fca[11],
+            'DOBOfBorrower' => date('Y-m-d', strtotime($fca[12])),
+            'PostCode' => $fca[13],
+            'MonthlyIncomeOfBorrower' => intval($fca[14]),
+            'MaritalStatusOfBorrower' => $fca[15],
+            'ResidentialStatusOfBorrower' => $fca[16],
+            'EmploymentStatusOfBorrower' => $fca[17]
+        ),
+    );
+*/
+
         array_push($data, $array_data);
     }
     $productSalesData = array(
