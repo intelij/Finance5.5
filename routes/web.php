@@ -78,7 +78,7 @@ Route::post('/upload', function (Request $request) {
 
     $json_array = csv_to_array($input);
 
-    dd($json_array);
+    // dd($json_array);
 //
 //    $json_array = [
 //        [671697,22787,"2018-05-25",500,"HCST",740.14,0,542,"N",0,14,"S","1966-10-25","DY3 1AA",2364,"S","C","ET",""  ],
