@@ -1,4 +1,4 @@
-§<?php
+<?php
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -121,8 +121,7 @@ Route::post('/upload', function (Request $request) {
                 'TransactionDate' => date('Y-m-d', strtotime($fca['TransactionDate'])),
                 'LoanAmount' => intval($fca['LoanAmount']),
                 'LoanType' => $fca['LoanType'],
-//                'APR' => number_format($fca['APR'], 2),
-                'APR' => number_format($fca['APR'] , 2 , '.' , '' ),
+                'APR' => number_format($fca['APR'], 2),
                 'ArrangementFee' => intval($fca['ArrangementFee']),
                 'TotalAmountPayable' => intval($fca['TotalAmountPayable']),
                 'Rollover' => $fca['Rollover'],
@@ -179,7 +178,7 @@ $array_data = array(
             ),
             'ReportDetails' => array(
                 'ReportCreationDate' => date('Y-m-d'),
-                'ReportIdentifier' => 'v'. date('Ymdhms'),
+                'ReportIdentifier' => 'UniqueReportv2',
             ),
         ),
         'PSD006FeedMsg' => $data,
