@@ -179,7 +179,7 @@ $array_data = array(
             ),
             'ReportDetails' => array(
                 'ReportCreationDate' => date('Y-m-d'),
-                'ReportIdentifier' => 'UniqueReportv2',
+                'ReportIdentifier' => 'v'. date('Ymdhms'),
             ),
         ),
         'PSD006FeedMsg' => $data,
